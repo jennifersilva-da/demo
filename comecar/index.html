@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Vamos criar o seu site</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f1ea;--ink:#2b211c;--accent:#a8825a;--line:rgba(43,33,28,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:300 16px/1.6 Jost,system-ui,sans-serif;padding:40px 16px 80px}
+.wrap{max-width:640px;margin:auto}
+h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(36px,7vw,54px);line-height:1.05;margin-bottom:14px}
+.lead{opacity:.8;margin-bottom:34px}
+label{display:block;font-weight:500;font-size:14px;margin:22px 0 6px}
+small{display:block;font-weight:300;opacity:.65;font-size:13px;margin-top:2px}
+input,textarea,select{width:100%;font:inherit;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+textarea{min-height:120px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+button{margin-top:34px;width:100%;background:var(--ink);color:var(--bg);border:0;border-radius:40px;padding:17px;font:500 15px Jost,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+button:disabled{opacity:.5}
+.box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:28px;font-size:14px}
+.ok{display:none;text-align:center;padding:60px 0}
+.ok h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:40px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div id="form-wrap">
+  <h1>Vamos criar o seu site</h1>
+  <p class="lead">Obrigada pela confiança! Preencha estes dados (leva 5 minutos) e eu trato do resto. Se não souber alguma resposta, deixe em branco.</p>
+  <form id="f">
+   <input type="hidden" name="site" id="site">
+   <label>Nome do negócio *<input name="negocio" required></label>
+   <label>O seu nome *<input name="responsavel" required></label>
+   <label>E-mail *<input type="email" name="email" required></label>
+   <label>WhatsApp *<input name="whatsapp" required placeholder="+351 9.."></label>
+   <label>Morada<input name="morada"></label>
+   <label>Horário<small>Ex.: Seg a Sex 10h–20h, Sáb 10h–14h</small><textarea name="horario" style="min-height:80px"></textarea></label>
+   <label>Serviços e preços *<small>Um por linha. Ex.: Limpeza de pele – 45 €</small><textarea name="servicos" required></textarea></label>
+   <label>Como as clientes marcam hoje?
+    <select name="marcacao"><option>Só por WhatsApp ou telefone</option><option>Fresha</option><option>Booksy</option><option>Treatwell</option><option>Outro sistema</option></select></label>
+   <label>Link do sistema de marcação<small>Se usar Fresha, Booksy ou outro</small><input name="link_marcacao"></label>
+   <label>Instagram<input name="instagram" placeholder="@..."></label>
+   <label>Domínio desejado<small>Ex.: oseusalao.pt — eu verifico se está livre</small><input name="dominio"></label>
+   <label>Estilo e cores<small>Gosta das cores da pré-visualização? Quer mudar algo?</small><textarea name="estilo" style="min-height:80px"></textarea></label>
+   <label>Mais alguma coisa?<textarea name="obs" style="min-height:80px"></textarea></label>
+   <div class="box"><b>Fotos e logótipo:</b> envie-os por WhatsApp ou responda ao e-mail de boas-vindas com as fotos em anexo. Fotos do espaço, de trabalhos feitos e da equipa funcionam muito bem.</div>
+   <button type="submit" id="btn">Enviar</button>
+  </form>
+ </div>
+ <div class="ok" id="ok"><h2>Recebido, obrigada!</h2><p>Vou começar já a trabalhar no seu site e envio-lhe uma nova versão em poucos dias.</p></div>
+</div>
+<script>
+var p=new URLSearchParams(location.search);document.getElementById('site').value=p.get('s')||'';
+document.getElementById('f').addEventListener('submit',function(e){
+ e.preventDefault();var b=document.getElementById('btn');b.disabled=true;b.textContent='A enviar...';
+ var data=new URLSearchParams(new FormData(this));
+ fetch('https://hook.eu2.make.com/dtjgb45brlgpgk5t6kqwoogh1tficadm',{method:'POST',mode:'no-cors',body:data}).then(function(){
+  document.getElementById('form-wrap').style.display='none';document.getElementById('ok').style.display='block';window.scrollTo(0,0);
+ }).catch(function(){b.disabled=false;b.textContent='Enviar';alert('Não foi possível enviar. Tente de novo ou envie os dados por WhatsApp.')});
+});
+</script>
+</body>
+</html>
