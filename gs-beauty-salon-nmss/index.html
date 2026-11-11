@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pré-visualização</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf5f2;--ink:#3d2f33;--accent:#c98a8a;--soft:#f1e2dc;--sage:#c9d2c1;--line:rgba(61,47,51,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:300 17px/1.75 Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.it{font-family:Italiana,Georgia,serif;font-weight:400}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+.ribbon{background:var(--soft);font-size:12px;letter-spacing:.12em;text-align:center;padding:9px 16px}
+header{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
+.logo{font-size:26px;max-width:65%;line-height:1.15}
+header a{font-size:14px;text-decoration:none;background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:30px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding:30px 0 90px;position:relative}
+.blob{position:absolute;width:420px;height:420px;border-radius:50%;background:var(--sage);filter:blur(80px);opacity:.45;right:-120px;top:-60px;z-index:-1}
+.chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:30px;padding:7px 16px;font-size:13px;margin-bottom:24px}
+h1{font-size:clamp(46px,6.8vw,96px);line-height:1;margin-bottom:24px}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font-size:19px;max-width:440px;margin-bottom:34px;opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;text-decoration:none;padding:17px 30px;border-radius:40px;font-weight:500;font-size:15px;box-shadow:0 12px 30px -10px var(--accent);transition:transform .3s}
+.btn:hover{transform:translateY(-3px)}
+.arch{display:grid;grid-template-columns:1fr .7fr;gap:16px;align-items:end}
+.arch div{background:var(--soft) center/cover}
+.arch div:first-child{aspect-ratio:3/4.2;border-radius:999px 999px 24px 24px}
+.arch div:last-child{aspect-ratio:1;border-radius:50%;margin-bottom:40px}
+.arch.empty div:first-child{background:linear-gradient(170deg,var(--soft),var(--accent))}
+.arch.empty div:last-child{background:linear-gradient(200deg,var(--sage),var(--soft))}
+.score{display:flex;align-items:center;gap:12px;margin-top:30px;font-size:15px}
+.score b{font-family:Italiana;font-size:40px;font-weight:400;line-height:1}
+section{padding:100px 0}
+.center{text-align:center;max-width:720px;margin:0 auto 56px}
+h2{font-size:clamp(38px,5vw,64px);line-height:1.05;margin-bottom:14px}
+.center p{opacity:.8;font-size:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:#fff;border-radius:28px;padding:34px 28px;border:1px solid var(--line);transition:transform .35s,box-shadow .35s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(61,47,51,.3)}
+.card .n{width:44px;height:44px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-family:Italiana;font-size:20px;margin-bottom:22px}
+.card h3{font-family:Italiana;font-weight:400;font-size:28px;line-height:1.15;margin-bottom:8px}
+.card p{font-size:15px;opacity:.75}
+.card small{display:inline-block;margin-top:16px;font-size:14px;color:var(--accent);font-weight:500}
+.about{background:var(--soft);border-radius:40px;padding:80px 60px;display:grid;grid-template-columns:1fr 1.3fr;gap:50px;align-items:center}
+.about p{font-size:19px}
+.photos{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+.photos div{flex:0 0 min(320px,78%);aspect-ratio:4/5;border-radius:24px;background:var(--soft) center/cover;scroll-snap-align:start}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.rev{background:#fff;border-radius:28px;padding:30px;border:1px solid var(--line)}
+.rev .st{color:var(--accent);letter-spacing:2px;margin-bottom:12px}
+.rev p{margin-bottom:16px}
+.rev span{font-size:14px;font-weight:500}
+.cta{background:var(--ink);color:var(--bg);border-radius:40px;padding:80px 40px;text-align:center}
+.cta p{opacity:.75;max-width:460px;margin:0 auto 32px}
+.contacts{display:flex;justify-content:center;flex-wrap:wrap;gap:16px 40px;margin-top:40px;font-size:15px}
+.contacts b{font-weight:500;color:var(--accent)}
+footer{padding:30px 0 110px;font-size:13px;opacity:.6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.float{position:fixed;right:16px;bottom:16px;z-index:9;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.float svg{width:30px;height:30px;fill:#fff}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:860px){
+ .hero,.about{grid-template-columns:1fr;gap:34px}
+ .arch{order:-1}
+ .about{padding:50px 26px;border-radius:28px}
+ section{padding:70px 0}
+ .cta{padding:60px 24px;border-radius:28px}
+}
+</style>
+</head>
+<body>
+<script id="data" type="application/json">{
+  "nome": "GS Beauty Salon",
+  "categoria": "Salão de unhas e beleza",
+  "cidade": "Porto",
+  "endereco": "R. de Cedofeita 170, 4050-179 Porto, Portugal",
+  "telefone": "+351 966 945 685",
+  "whatsapp": "351966945685",
+  "instagram": "",
+  "nota": 4.8,
+  "avaliacoes": 66,
+  "titulo": "Unhas perfeitas<br>no <em>centro do Porto</em>",
+  "subtitulo": "Manicure, gel, sobrancelhas e cabelo na Cedofeita, com uma equipa simpática, rápida e com preços justos.",
+  "sobre": "No GS Beauty Salon, a equipa recebe com simpatia e trabalha com paciência e rapidez. As clientes destacam o trabalho delicado nas unhas de gel, a escova e o design de sobrancelhas, sempre com um preço justo. Com nota 4,8 e mais de 60 avaliações, é um sítio onde se sente bem tratada desde a chegada.",
+  "servicos": [
+    {
+      "nome": "Manicure e pintura de unhas",
+      "descricao": "Tratamento completo das mãos e pintura com acabamento cuidado.",
+      "preco": ""
+    },
+    {
+      "nome": "Unhas de gel",
+      "descricao": "Aplicação de gel com acabamento uniforme e duração prolongada.",
+      "preco": ""
+    },
+    {
+      "nome": "Alongamento de unhas",
+      "descricao": "Unhas alongadas com a forma e o comprimento que escolher.",
+      "preco": ""
+    },
+    {
+      "nome": "Pedicure",
+      "descricao": "Cuidado completo dos pés, com esmaltagem à sua escolha.",
+      "preco": ""
+    },
+    {
+      "nome": "Design de sobrancelhas",
+      "descricao": "Desenho e definição com linha limpa, adaptado ao seu rosto.",
+      "preco": ""
+    },
+    {
+      "nome": "Escova e penteado",
+      "descricao": "Escova para o dia a dia ou para uma ocasião especial.",
+      "preco": ""
+    }
+  ],
+  "depoimentos": [
+    {
+      "nome": "Ranee K.",
+      "texto": "A melhor experiência de todas! Fiz escova e design de sobrancelhas. Super profissional, fez exatamente o que eu pedi e mal posso esperar para voltar!"
+    },
+    {
+      "nome": "Alice M.",
+      "texto": "Ótima experiência. Fomos com a minha mãe e a minha irmã fazer pedicure e manicure. As meninas são muito simpáticas e fizeram um ótimo trabalho."
+    },
+    {
+      "nome": "Dalia D.",
+      "texto": "Ela é super simpática, rápida e delicada. Se estiver no Porto, recomendo muito. Fez unhas lindas em apenas 25 minutos e é uma pessoa muito gentil."
+    }
+  ],
+  "fotos": [],
+  "paleta": {
+    "bg": "#FBF6F4",
+    "ink": "#3E3335",
+    "accent": "#C48A8A",
+    "soft": "#F3E4E1"
+  },
+  "cta": "Marque hoje a sua manicure ou o design de sobrancelhas e sinta a diferença de um atendimento feito com calma."
+}</script>
+<div class="ribbon" id="ribbon"></div>
+<div class="wrap">
+ <header><div class="logo it" id="logo"></div><a href="#marcar">Marcar</a></header>
+ <div class="hero">
+  <div class="blob"></div>
+  <div>
+   <span class="chip" id="chip"></span>
+   <h1 class="it" id="title"></h1>
+   <p class="lead" id="lead"></p>
+   <a class="btn wa" href="#">Marcar pelo WhatsApp</a>
+   <div class="score" id="score"></div>
+  </div>
+  <div class="arch" id="arch"><div></div><div></div></div>
+ </div>
+</div>
+<section class="reveal"><div class="wrap"><div class="center"><h2 class="it">Os nossos serviços</h2><p>Cuidado, detalhe e tempo só para si.</p></div><div class="cards" id="cards"></div></div></section>
+<section class="reveal" style="padding-top:0"><div class="wrap about"><h2 class="it">Sobre nós</h2><p id="about"></p></div></section>
+<section class="reveal" id="ph" style="padding-top:0"><div class="wrap photos" id="photos"></div></section>
+<section class="reveal" style="padding-top:0"><div class="wrap"><div class="center"><h2 class="it">Quem já veio, volta</h2><p id="revsub"></p></div><div class="revs" id="revs"></div></div></section>
+<section class="reveal" id="marcar" style="padding-top:0"><div class="wrap cta"><h2 class="it">Reserve o seu momento</h2><p id="ctatext"></p><a class="btn wa" href="#">Marcar pelo WhatsApp</a>
+<div class="contacts"><span><b>Morada</b> · <span id="addr"></span></span><span><b>Telefone</b> · <span id="tel"></span></span><span id="igw"><b>Instagram</b> · <a id="ig" target="_blank" rel="noopener"></a></span></div></div></section>
+<div class="wrap"><footer><span id="copy"></span><span>Pré-visualização de demonstração</span></footer></div>
+<a class="float wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.6-.1 1.2z"/></svg></a>
+<script>
+(function(){
+var d=JSON.parse(document.getElementById('data').textContent);
+var $=function(i){return document.getElementById(i)};
+var r=document.documentElement.style;
+if(d.paleta){if(d.paleta.bg)r.setProperty('--bg',d.paleta.bg);if(d.paleta.ink)r.setProperty('--ink',d.paleta.ink);if(d.paleta.accent)r.setProperty('--accent',d.paleta.accent);if(d.paleta.soft)r.setProperty('--soft',d.paleta.soft)}
+document.title=d.nome+(d.cidade?' · '+d.cidade:'');
+$('ribbon').textContent='Pré-visualização criada para '+d.nome;
+$('logo').textContent=d.nome;
+$('chip').textContent=(d.categoria||'')+(d.cidade?' em '+d.cidade:'');
+$('title').innerHTML=d.titulo||d.nome;
+$('lead').textContent=d.subtitulo||'';
+if(d.nota)$('score').innerHTML='<b>'+String(d.nota).replace('.',',')+'</b><span>★★★★★<br>'+(d.avaliacoes||'')+' avaliações no Google</span>';
+var f=(d.fotos||[]).filter(Boolean),a=$('arch').children;
+if(f[0]){a[0].style.backgroundImage='url("'+f[0]+'")';if(f[1])a[1].style.backgroundImage='url("'+f[1]+'")';else a[1].style.background='var(--sage)'}else $('arch').classList.add('empty');
+$('cards').innerHTML=(d.servicos||[]).map(function(s,k){return '<div class="card"><div class="n">'+(k+1)+'</div><h3>'+s.nome+'</h3><p>'+(s.descricao||'')+'</p>'+(s.preco?'<small>'+s.preco+'</small>':'')+'</div>'}).join('');
+$('about').textContent=d.sobre||'';
+if(f.length>2)$('photos').innerHTML=f.slice(2,6).map(function(u){return '<div style="background-image:url(&quot;'+u+'&quot;)"></div>'}).join('');else $('ph').style.display='none';
+$('revsub').textContent=d.nota?String(d.nota).replace('.',',')+' estrelas em '+(d.avaliacoes||'')+' avaliações no Google':'';
+$('revs').innerHTML=(d.depoimentos||[]).slice(0,3).map(function(t){return '<div class="rev"><div class="st">★★★★★</div><p>'+t.texto+'</p><span>'+t.nome+'</span></div>'}).join('');
+$('ctatext').textContent=d.cta||'Envie-nos uma mensagem e encontramos o horário ideal para si.';
+$('addr').textContent=d.endereco||'';
+$('tel').innerHTML='<a href="tel:'+(d.telefone||'').replace(/\s/g,'')+'">'+(d.telefone||'')+'</a>';
+if(d.instagram){$('ig').href=d.instagram;$('ig').textContent=d.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//,'@').replace(/[/?].*$/,'')}else $('igw').style.display='none';
+$('copy').textContent='© '+new Date().getFullYear()+' '+d.nome;
+var wa='https://wa.me/'+(d.whatsapp||'')+'?text='+encodeURIComponent('Olá! Gostaria de marcar uma visita.');
+[].forEach.call(document.querySelectorAll('.wa'),function(x){x.href=wa;x.target='_blank'});
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1});
+[].forEach.call(document.querySelectorAll('.reveal'),function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>
