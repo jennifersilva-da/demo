@@ -59,7 +59,7 @@ var p=new URLSearchParams(location.search);document.getElementById('site').value
 document.getElementById('f').addEventListener('submit',function(e){
  e.preventDefault();var b=document.getElementById('btn');b.disabled=true;b.textContent='A enviar...';
  var data=new URLSearchParams(new FormData(this));
- fetch('https://hook.eu2.make.com/dtjgb45brlgpgk5t6kqwoogh1tficadm',{method:'POST',mode:'no-cors',body:data}).then(function(){
+ fetch('https://hook.eu1.make.com/2qh80y4sgfxxillnro6a5jz40eicdqhz',{method:'POST',mode:'no-cors',body:data}).then(function(){
   document.getElementById('form-wrap').style.display='none';document.getElementById('ok').style.display='block';window.scrollTo(0,0);
  }).catch(function(){b.disabled=false;b.textContent='Enviar';alert('Não foi possível enviar. Tente de novo ou envie os dados por WhatsApp.')});
 });
