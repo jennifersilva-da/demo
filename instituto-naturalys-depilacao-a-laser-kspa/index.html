@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pré-visualização</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f1ea;--ink:#2b211c;--accent:#a8825a;--soft:#ece3d7;--line:rgba(43,33,28,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:300 17px/1.7 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:-.01em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.ribbon{background:var(--ink);color:var(--bg);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:9px 16px}
+header{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+.logo{font-size:26px;line-height:1.1;max-width:60%}
+.nav-cta{font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:3px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:end;padding:40px 0 90px}
+.eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;display:flex;gap:12px;align-items:center}
+.eyebrow:before{content:"";width:34px;height:1px;background:var(--accent)}
+h1{font-size:clamp(44px,6.4vw,92px);line-height:.98;margin-bottom:28px}
+h1 em{font-style:italic;color:var(--accent)}
+.lead{max-width:480px;font-size:18px;margin-bottom:38px;opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);text-decoration:none;padding:17px 30px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;transition:transform .3s,background .3s}
+.btn:hover{background:var(--accent);transform:translateY(-2px)}
+.rating{display:flex;gap:14px;align-items:center;margin-top:34px;font-size:14px}
+.stars{color:var(--accent);letter-spacing:3px}
+.hero-img{position:relative;aspect-ratio:4/5;background:var(--soft) center/cover no-repeat;border-radius:220px 220px 0 0;overflow:hidden}
+.hero-img.empty{background:radial-gradient(120% 80% at 30% 20%,#fff8 0,transparent 60%),linear-gradient(160deg,var(--soft),var(--accent))}
+.hero-img .tag{position:absolute;left:-1px;bottom:28px;background:var(--bg);padding:14px 22px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+section{padding:110px 0;border-top:1px solid var(--line)}
+.split{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
+h2{font-size:clamp(36px,4.4vw,60px);line-height:1.04}
+.about p{font-size:19px;max-width:620px}
+.services{list-style:none;counter-reset:s}
+.services li{counter-increment:s;display:grid;grid-template-columns:60px 1fr auto;gap:20px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.services li:before{content:counter(s,decimal-leading-zero);font-size:13px;letter-spacing:.14em;color:var(--accent)}
+.services h3{font-size:28px;font-weight:500;margin-bottom:4px}
+.services p{font-size:15px;opacity:.75}
+.price{font-size:14px;white-space:nowrap;letter-spacing:.06em}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery div{aspect-ratio:3/4;background:var(--soft) center/cover}
+.gallery div:nth-child(2){transform:translateY(40px)}
+.quote{text-align:center;max-width:860px;margin:auto}
+.quote blockquote{font-size:clamp(28px,3.4vw,44px);line-height:1.25;font-style:italic;margin:26px 0}
+.quote cite{font-style:normal;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.dots{display:flex;gap:10px;justify-content:center;margin-top:30px}
+.dots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--ink);background:none;cursor:pointer}
+.dots button.on{background:var(--ink)}
+.visit{background:var(--ink);color:var(--bg);border:0}
+.visit .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.visit dl{display:grid;gap:22px}
+.visit dt{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.visit dd{font-size:18px}
+.visit .btn{background:var(--accent)}
+footer{padding:34px 0 120px;font-size:13px;opacity:.6;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.float{position:fixed;right:18px;bottom:18px;z-index:9;background:#1f8f55;color:#fff;text-decoration:none;border-radius:40px;padding:14px 20px;font-size:14px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.18);display:flex;gap:8px;align-items:center}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:860px){
+ .hero,.split,.visit .grid{grid-template-columns:1fr;gap:40px}
+ .hero{padding-top:10px}
+ .hero-img{order:-1;aspect-ratio:1/1.05;border-radius:160px 160px 0 0}
+ section{padding:76px 0}
+ .services li{grid-template-columns:40px 1fr}
+ .price{grid-column:2}
+ .gallery{grid-template-columns:1fr 1fr}
+ .gallery div:nth-child(2){transform:none}
+ .gallery div:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+<script id="data" type="application/json">{
+  "nome": "Instituto Naturalys",
+  "categoria": "Depilação a laser",
+  "cidade": "Porto",
+  "endereco": "Rua dos Bragas 208, 3.º andar sala 3, 4050-123 Porto",
+  "telefone": "+351 911 118 124",
+  "whatsapp": "351911118124",
+  "instagram": "",
+  "nota": 5,
+  "avaliacoes": 16,
+  "titulo": "Depilação a laser<br>com <em>cuidado</em> e calma",
+  "subtitulo": "Mais de 20 anos de experiência em depilação a laser e tratamentos de rosto com cosmética natural, no centro do Porto.",
+  "sobre": "Cada atendimento é personalizado, num ambiente acolhedor e tranquilo, pensado para que saia confiante e relaxada. Muitas clientes chegam por recomendação de quem já foi tratado no espaço. O trabalho assenta no rigor técnico, na atenção ao detalhe e em tratamentos com produtos naturais.",
+  "servicos": [
+    {
+      "nome": "Depilação a laser",
+      "descricao": "Sessões em diferentes tecnologias, adaptadas ao seu tipo de pele e de pelo.",
+      "preco": ""
+    },
+    {
+      "nome": "Sessões de manutenção",
+      "descricao": "Acompanhamento para manter os resultados ao longo do tempo, com marcação recomendada.",
+      "preco": ""
+    },
+    {
+      "nome": "Tratamentos de rosto",
+      "descricao": "Tratamentos com cosmética natural, com foco na saúde e no bem-estar da pele.",
+      "preco": ""
+    },
+    {
+      "nome": "Banhos de pétalas",
+      "descricao": "Um momento de relaxamento que complementa as sessões e ajuda a desligar do dia a dia.",
+      "preco": ""
+    },
+    {
+      "nome": "Orientação para a pele e o corpo",
+      "descricao": "Conselhos personalizados sobre cuidados diários, para proteger os resultados.",
+      "preco": ""
+    }
+  ],
+  "depoimentos": [
+    {
+      "nome": "Raquel S.",
+      "texto": "Já confio nela há anos e nunca me desilude. É daquelas profissionais em quem podemos confiar de olhos fechados, pelo trabalho e pelos conselhos. Recomendo a quem quiser sentir-se bem por dentro e por fora."
+    },
+    {
+      "nome": "Daniela C.",
+      "texto": "Nem que seja só para as manutenções, viajo mais de 150 km para depilação a laser e tratamentos de beleza só aqui. Toda a confiança, não só no resultado mas no cuidado em todo o processo."
+    },
+    {
+      "nome": "Silvia S.",
+      "texto": "A sala é tão acolhedora que quase adormeço durante o tratamento, e não adormeço com facilidade. Fiquei com o rosto muito macio e com outra cor. Vou repetir com toda a certeza."
+    }
+  ],
+  "fotos": [],
+  "paleta": {
+    "bg": "#F7F1EA",
+    "ink": "#3B2F2A",
+    "accent": "#B08D57",
+    "soft": "#EFE4D6"
+  },
+  "cta": "Marque a sua sessão e venha conhecer um espaço calmo, pensado para si."
+}</script>
+<div class="ribbon" id="ribbon"></div>
+<div class="wrap">
+ <header><div class="logo serif" id="logo"></div><a class="nav-cta" href="#visita">Marcar</a></header>
+ <div class="hero">
+  <div>
+   <div class="eyebrow" id="eyebrow"></div>
+   <h1 class="serif" id="title"></h1>
+   <p class="lead" id="lead"></p>
+   <a class="btn wa" href="#">Marcar pelo WhatsApp <span>→</span></a>
+   <div class="rating" id="rating"></div>
+  </div>
+  <div class="hero-img" id="heroimg"><span class="tag" id="herotag"></span></div>
+ </div>
+</div>
+<section class="reveal"><div class="wrap split about"><h2 class="serif">Sobre nós</h2><p id="about"></p></div></section>
+<section class="reveal"><div class="wrap split"><h2 class="serif">Tratamentos</h2><ul class="services" id="services"></ul></div></section>
+<section class="reveal" id="gal-sec"><div class="wrap"><div class="gallery" id="gallery"></div></div></section>
+<section class="reveal"><div class="wrap quote"><div class="stars">★★★★★</div><blockquote class="serif" id="q"></blockquote><cite id="qn"></cite><div class="dots" id="dots"></div></div></section>
+<section class="visit" id="visita"><div class="wrap grid">
+ <div><h2 class="serif" style="margin-bottom:22px">Marque o seu momento</h2><p style="opacity:.8;margin-bottom:34px;max-width:440px" id="ctatext"></p><a class="btn wa" href="#">Marcar pelo WhatsApp <span>→</span></a></div>
+ <dl><div><dt>Morada</dt><dd id="addr"></dd></div><div><dt>Telefone</dt><dd id="tel"></dd></div><div id="igwrap"><dt>Instagram</dt><dd><a id="ig" target="_blank" rel="noopener"></a></dd></div></dl>
+</div></section>
+<div class="wrap"><footer><span id="copy"></span><span>Pré-visualização de demonstração</span></footer></div>
+<a class="float wa" href="#">WhatsApp</a>
+<script>
+(function(){
+var d=JSON.parse(document.getElementById('data').textContent);
+var $=function(i){return document.getElementById(i)};
+var r=document.documentElement.style;
+if(d.paleta){if(d.paleta.bg)r.setProperty('--bg',d.paleta.bg);if(d.paleta.ink)r.setProperty('--ink',d.paleta.ink);if(d.paleta.accent)r.setProperty('--accent',d.paleta.accent);if(d.paleta.soft)r.setProperty('--soft',d.paleta.soft)}
+document.title=d.nome+(d.cidade?' · '+d.cidade:'');
+$('ribbon').textContent='Pré-visualização criada para '+d.nome;
+$('logo').textContent=d.nome;
+$('eyebrow').textContent=(d.categoria||'')+(d.cidade?' · '+d.cidade:'');
+$('title').innerHTML=d.titulo||d.nome;
+$('lead').textContent=d.subtitulo||'';
+if(d.nota){$('rating').innerHTML='<span class="stars">★★★★★</span><span>'+String(d.nota).replace('.',',')+' no Google · '+(d.avaliacoes||'')+' avaliações</span>'}
+var f=(d.fotos||[]).filter(Boolean);
+if(f[0]){$('heroimg').style.backgroundImage='url("'+f[0]+'")'}else{$('heroimg').classList.add('empty')}
+$('herotag').textContent=d.cidade||'';
+$('about').textContent=d.sobre||'';
+$('services').innerHTML=(d.servicos||[]).map(function(s){return '<li><div><h3 class="serif">'+s.nome+'</h3><p>'+(s.descricao||'')+'</p></div>'+(s.preco?'<span class="price">'+s.preco+'</span>':'')+'</li>'}).join('');
+if(f.length>1){$('gallery').innerHTML=f.slice(1,4).map(function(u){return '<div style="background-image:url(&quot;'+u+'&quot;)"></div>'}).join('')}else{$('gal-sec').style.display='none'}
+var t=(d.depoimentos||[]),i=0;
+function show(n){if(!t.length)return;i=n;$('q').textContent='“'+t[n].texto+'”';$('qn').textContent=t[n].nome;[].forEach.call($('dots').children,function(b,k){b.className=k==n?'on':''})}
+$('dots').innerHTML=t.map(function(_,k){return '<button aria-label="'+(k+1)+'"></button>'}).join('');
+[].forEach.call($('dots').children,function(b,k){b.onclick=function(){show(k)}});
+show(0);if(t.length>1)setInterval(function(){show((i+1)%t.length)},6500);
+$('ctatext').textContent=d.cta||'Escreva-nos no WhatsApp e escolhemos juntos o melhor horário.';
+$('addr').textContent=d.endereco||'';
+$('tel').innerHTML='<a href="tel:'+(d.telefone||'').replace(/\s/g,'')+'">'+(d.telefone||'')+'</a>';
+if(d.instagram){$('ig').href=d.instagram;$('ig').textContent=d.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//,'@').replace(/[/?].*$/,'')}else{$('igwrap').style.display='none'}
+$('copy').textContent='© '+new Date().getFullYear()+' '+d.nome;
+var wa='https://wa.me/'+(d.whatsapp||'')+'?text='+encodeURIComponent('Olá! Gostaria de marcar uma visita.');
+[].forEach.call(document.querySelectorAll('.wa'),function(a){a.href=wa;a.target='_blank'});
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+[].forEach.call(document.querySelectorAll('.reveal'),function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>
