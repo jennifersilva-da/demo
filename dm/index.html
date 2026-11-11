@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mensagem para Instagram</title>
+<style>
+  body{margin:0;background:#f6f1ea;font-family:-apple-system,Arial,sans-serif;color:#2b211c}
+  .w{max-width:520px;margin:0 auto;padding:22px 16px 40px}
+  h1{font-size:20px;margin:0 0 4px}
+  .sub{color:#8a7f76;font-size:14px;margin:0 0 16px}
+  .msg{background:#fff;border:1px solid #ece6df;border-radius:14px;padding:14px;font-size:15px;line-height:1.5;white-space:pre-wrap;margin:0 0 16px}
+  a.b,button.b{display:block;width:100%;box-sizing:border-box;border:0;border-radius:12px;padding:16px 10px;font-size:17px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer;margin:0 0 10px;font-family:inherit}
+  .ig{background:#c13584;color:#fff}
+  .sec{background:#fff;color:#2b211c;border:1.5px solid #2b211c !important;font-weight:normal !important;font-size:15px !important}
+  .ok{display:none;background:#eef8f2;color:#1f8f55;border-radius:10px;padding:10px;text-align:center;font-size:14px;margin:0 0 12px}
+  .tip{font-size:13px;color:#8a7f76;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1 id="t">Mensagem para o Instagram</h1>
+  <p class="sub" id="s"></p>
+  <div class="msg" id="m"></div>
+  <div class="ok" id="ok">✅ Mensagem copiada! No Instagram, toque na caixa de texto e escolha <b>Colar</b>.</div>
+  <button class="b ig" id="go">📋 Copiar mensagem e abrir Instagram</button>
+  <a class="b sec" id="find" target="_blank" rel="noopener">🔎 Procurar o perfil no Google</a>
+  <p class="tip">Se o Instagram não abrir sozinho, a mensagem já está copiada: abra o Instagram, procure o salão e cole na conversa.</p>
+</div>
+<script>
+  var p = new URLSearchParams(location.search);
+  var u = (p.get('u') || '').replace(/^@/, '').trim();
+  var t = p.get('t') || '';
+  var n = p.get('n') || '';
+  var c = p.get('c') || '';
+  document.getElementById('m').textContent = t;
+  if (n) document.getElementById('t').textContent = n;
+  document.getElementById('s').textContent = u ? ('@' + u) : 'Perfil do Instagram ainda não encontrado';
+  document.getElementById('find').href = 'https://www.google.com/search?q=' + encodeURIComponent(n + ' ' + c + ' instagram');
+  if (!u) document.getElementById('go').textContent = '📋 Copiar mensagem';
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(function () { return fallback(text); });
+    }
+    return Promise.resolve(fallback(text));
+  }
+  function fallback(text) {
+    var a = document.createElement('textarea');
+    a.value = text; a.setAttribute('readonly', ''); a.style.position = 'fixed'; a.style.opacity = '0';
+    document.body.appendChild(a); a.select(); a.setSelectionRange(0, 99999);
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(a);
+  }
+  document.getElementById('go').addEventListener('click', function () {
+    copy(t).then(function () {
+      document.getElementById('ok').style.display = 'block';
+      if (u) setTimeout(function () { location.href = 'https://ig.me/m/' + encodeURIComponent(u); }, 700);
+    });
+  });
+</script>
+</body>
+</html>
